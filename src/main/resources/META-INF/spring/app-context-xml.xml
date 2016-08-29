@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- The following is old way i.e. without using 'p' namespace -->
+	<!-- <bean id="messageRenderer" class="com.apress.prospring4.ch3.xml.StandardOutMessageRenderer"> 
+		<property name="messageProvider" ref="messageProvider" /> </bean> -->
+
+	<bean id="messageRenderer" class="org.pack.xml.StandardMessageOutRenderer"
+		p:messageProvider-ref="messageProvider" />
+
+	<bean id="messageProvider" class="org.pack.xml.HelloWorldMessageProvider" />
+
+	<bean id="confMessageProvider" class="org.pack.xml.ConfigurableMessageProvider"
+		c:message="Genius !" />
+
+	<!-- Old way to use constructor injectio i.e. without 'c' namespace -->
+	<!-- <bean id="messageProvider" class="org.pack.xml.ConfigurableMessageProvider"> 
+		<constructor-arg value="Configurable message" /> </bean> -->
+
+	<bean id="constructorConfusion" class="org.pack.xml.ConstructorConfusion">
+		<constructor-arg type="int">
+			<value>90</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="injectSimple" class="org.pack.xml.InjectSimple" p:name="Chris Schaefer"
+		p:age="32" p:height="1.778" p:programmer="true" p:ageInSeconds="1009843200" />
+
+</beans>
