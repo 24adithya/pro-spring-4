@@ -37,4 +37,12 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 		p:height="#{injectSimpleConfig.height}" p:programmer="#{injectSimpleConfig.programmer}"
 		p:ageInSeconds="#{injectSimpleConfig.ageInSeconds}" />
 
+	<!-- Injection using setter -->
+	<bean id="oracle" name="wiseworm" class="org.pack.BookwormOracle" />
+	<bean id="injectRef" class="org.pack.InjectRef">
+		<property name="oracle">
+			<ref bean="oracle" />
+		</property>
+	</bean>
+
 </beans>
