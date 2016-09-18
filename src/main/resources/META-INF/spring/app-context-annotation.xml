@@ -2,10 +2,39 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- For activating 'Resource' -->
+	<context:annotation-config />
+
 	<context:component-scan base-package="org.pack.annotation" />
-	<bean id="someMessage" class="java.lang.String" c:_0="Genius passed from annotation xml !"/>
+	<bean id="someMessage" class="java.lang.String" c:_0="Genius passed from annotation xml !" />
+
+	<util:map id="map" map-class="java.util.HashMap">
+		<entry key="someValue">
+			<value>Hello World!</value>
+		</entry>
+		<entry key="someBean">
+			<ref bean="oracle" />
+		</entry>
+	</util:map>
+	<util:properties id="props">
+		<prop key="firstName">Adams</prop>
+		<prop key="secondName">Adikya</prop>
+	</util:properties>
+	<util:set id="set">
+		<value>Hello World!</value>
+		<ref bean="oracle" />
+	</util:set>
+	<util:list id="list">
+		<value>Hello World!</value>
+		<ref bean="oracle" />
+	</util:list>
+
 </beans>

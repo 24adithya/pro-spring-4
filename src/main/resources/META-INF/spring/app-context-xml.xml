@@ -31,18 +31,66 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 		p:age="32" p:height="1.778" p:programmer="true" p:ageInSeconds="1009843200" />
 
 	<bean id="injectSimpleConfig" class="org.pack.xml.InjectSimpleConfig" />
-	
+
 	<bean id="injectSimpleSpel" class="org.pack.xml.InjectSimpleSpel"
 		p:name="#{injectSimpleConfig.name}" p:age="#{injectSimpleConfig.age}"
 		p:height="#{injectSimpleConfig.height}" p:programmer="#{injectSimpleConfig.programmer}"
 		p:ageInSeconds="#{injectSimpleConfig.ageInSeconds}" />
 
 	<!-- Injection using setter -->
-	<bean id="oracle" name="wiseworm" class="org.pack.BookwormOracle" />
+	<bean id="oracle" name="wiseworm" class="org.pack.xml.BookwormOracle" />
 	<bean id="injectRef" class="org.pack.InjectRef">
 		<property name="oracle">
 			<ref bean="oracle" />
 		</property>
 	</bean>
+
+	<!-- Parent child app context -->
+	<!-- <bean id="target1" class="org.pack.xml.SimpleTarget" p:val-ref="injectBeanParent" 
+		/> <bean id="target2" class="org.pack.xml.SimpleTarget" p:val-ref="injectBean" 
+		/> <bean id="target3" class="org.pack.xml.SimpleTarget"> <property name="val"> 
+		<ref parent="injectBean" /> </property> </bean> <bean id="injectBean" class="java.lang.String" 
+		c:_0="Child In Bean" /> -->
+
+	<!-- Injection collections into bean -->
+	<bean id="injectCollection" class="org.pack.xml.CollectionInjection">
+		<property name="map">
+			<map>
+				<entry key="someValue">
+					<value>Hello World!</value>
+				</entry>
+				<entry key="someBean">
+					<ref bean="oracle" />
+				</entry>
+			</map>
+		</property>
+		<property name="props">
+			<props>
+				<prop key="firstName">Adithya</prop>
+				<prop key="secondName">Narayan</prop>
+			</props>
+		</property>
+		<property name="set">
+			<set>
+				<value>Hello World!</value>
+				<ref bean="oracle" />
+			</set>
+		</property>
+		<property name="list">
+			<list>
+				<value>Hello World!</value>
+				<ref bean="oracle" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="foo" class="org.pack.xml.Foo" />
+	<bean id="bar1" class="org.pack.xml.Bar" />
+	<bean id="targetByName" autowire="byName" class="org.pack.xml.Target"
+		lazy-init="true" />
+	<bean id="targetByType" autowire="byType" class="org.pack.xml.Target"
+		lazy-init="true" />
+	<bean id="targetConstructor" autowire="constructor"
+		class="org.pack.xml.Target" lazy-init="true" />
 
 </beans>

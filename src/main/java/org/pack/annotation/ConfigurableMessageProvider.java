@@ -18,7 +18,6 @@ public class ConfigurableMessageProvider implements MessageProvider {
 		this.message = confMmessage;
 	}
 
-	@Override
 	public String getMessage() {
 		return this.message;
 	}
