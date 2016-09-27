@@ -29,5 +29,12 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="injectSimple" class="org.pack.xml.InjectSimple" p:name="Chris Schaefer"
 		p:age="32" p:height="1.778" p:programmer="true" p:ageInSeconds="1009843200" />
+		
+	<bean id="simpleBean1" class="org.pack.xml.SimpleBeanWithInterface" p:name="Adithya Narayan"
+		p:age="28" />
+	<bean id="simpleBean2" class="org.pack.xml.SimpleBeanWithInterface"
+		p:age="25" />
+	<bean id="simpleBean3" class="org.pack.xml.SimpleBeanWithInterface"
+		p:age="22"  />
 
 </beans>

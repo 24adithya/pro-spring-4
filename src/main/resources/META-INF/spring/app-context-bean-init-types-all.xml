@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/context
+http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+	<context:annotation-config/>
+
+	<bean id="simpleBean1" class="org.pack.xml.SimpleBeanCoveringAllInitTypes" p:name="Adithya Narayan" init-method="initViaXML"
+		p:age="28" />
+	<bean id="simpleBean2" class="org.pack.xml.SimpleBeanCoveringAllInitTypes" p:name="Abhilash Narayan" init-method="initViaXML"
+		p:age="22" />
+	<bean id="simpleBean3" class="org.pack.xml.SimpleBeanCoveringAllInitTypes" init-method="initViaXML"
+		p:age="20"  />
+
+</beans>
