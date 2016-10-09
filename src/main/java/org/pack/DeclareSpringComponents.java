@@ -15,8 +15,8 @@ public class DeclareSpringComponents {
 		 ctx.load("classpath:META-INF/spring/app-context-annotation.xml");//This
 		// also works
 		ctx.refresh();
-		MessageProvider messageProvider = ctx.getBean("messageProvider", MessageProvider.class);
-		System.out.println(messageProvider.getMessage());
+		/*MessageProvider messageProvider = ctx.getBean("messageProvider", MessageProvider.class);
+		System.out.println(messageProvider.getMessage());*/
 
 		MessageRenderer messageRenderer = ctx.getBean("messageRenderer", MessageRenderer.class);
 		messageRenderer.render();
