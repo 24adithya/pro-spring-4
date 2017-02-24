@@ -23,7 +23,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 		
 	<context:property-placeholder
-		location="classpath:META-INF/properties/jdbc-orm.properties" />
+		<!-- location="classpath:META-INF/properties/jdbc-orm.properties" /> -->
+		location="classpath:META-INF/properties/jdbc-oracle-orm.properties" />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
@@ -39,7 +40,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		p:hibernateProperties-ref="hibernateProperties" />
 
 	<util:properties id="hibernateProperties">
-		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+		<prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
 		<prop key="hibernate.max_fetch_depth">3</prop>
 		<prop key="hibernate.jdbc.fetch_size">50</prop>
 		<prop key="hibernate.jdbc.batch_size">10</prop>
