@@ -20,9 +20,19 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@Entity
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@Entity(name = "contact")
 @Table(name = "contact")
+@NamedQueries({
+		@NamedQuery(name = "contact.findById", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
+		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })
 public class Contact implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private int version;
 	private String firstName;

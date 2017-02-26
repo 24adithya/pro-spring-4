@@ -29,19 +29,19 @@ public class ContactDaoImpl implements ContactDao {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Contact> findAll() {
-		return sessionFactory.getCurrentSession().createQuery("from Contact c").list();
+		return sessionFactory.getCurrentSession().createQuery("from contact c").list();
 	}
 
 	@Override
 	public List<Contact> findAllWithDetail() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().getNamedQuery("contact.findAllWithDetail").list();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Contact findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Contact) sessionFactory.getCurrentSession().getNamedQuery("contact.findById").setParameter("id", id)
+				.uniqueResult();
 	}
 
 	@Override
@@ -61,7 +61,17 @@ public class ContactDaoImpl implements ContactDao {
 		ctx.load("classpath:META-INF/spring/app-context-annotation-orm.xml");
 		ctx.refresh();
 		ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
+		//Find only contacts
+		
+		System.out.println("Find only contacts");
 		listContacts(contactDao.findAll());
+		System.out.println("Find contacts with details");
+		listContactsWithDetail(contactDao.findAllWithDetail());
+		System.out.println("Find contact by Id");
+		Contact contact = contactDao.findById(1l);
+		System.out.println("");
+		System.out.println("Contact with id 1:" + contact);
+		System.out.println("");
 	}
 
 	private static void listContacts(List<Contact> contacts) {
@@ -69,6 +79,25 @@ public class ContactDaoImpl implements ContactDao {
 		System.out.println("Listing contacts without details:");
 		for (Contact contact : contacts) {
 			System.out.println(contact);
+			System.out.println();
+		}
+	}
+
+	private static void listContactsWithDetail(List<Contact> contacts) {
+		System.out.println("");
+		System.out.println("Listing contacts with details:");
+		for (Contact contact : contacts) {
+			System.out.println(contact);
+			if (contact.getContactTelDetails() != null) {
+				for (ContactTelDetail contactTelDetail : contact.getContactTelDetails()) {
+					System.out.println(contactTelDetail);
+				}
+			}
+			if (contact.getHobbies() != null) {
+				for (Hobby hobby : contact.getHobbies()) {
+					System.out.println(hobby);
+				}
+			}
 			System.out.println();
 		}
 	}

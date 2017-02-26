@@ -12,9 +12,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "hobby")
 @Table(name = "hobby")
 public class Hobby implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hobbyId;
 	private Set<Contact> contacts = new HashSet<Contact>();
 

@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "hobby_sphb")
 @Table(name = "hobby_sphb")
 public class Hobby implements Serializable {
 	/**

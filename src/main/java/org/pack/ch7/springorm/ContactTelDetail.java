@@ -12,9 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-@Entity
+@Entity(name = "contact_tel_detail")
 @Table(name = "contact_tel_detail")
 public class ContactTelDetail implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private int version;
 	private String telType;
