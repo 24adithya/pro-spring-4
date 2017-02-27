@@ -1,6 +1,8 @@
 package org.pack.ch7.springorm;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -46,14 +48,16 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public Contact save(Contact contact) {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory.getCurrentSession().saveOrUpdate(contact);
+		LOG.info("Contact saved with id:" + contact.getId());
+		return contact;
+
 	}
 
 	@Override
 	public void delete(Contact contact) {
-		// TODO Auto-generated method stub
-
+		sessionFactory.getCurrentSession().delete(contact);
+		LOG.info("Contact deleted with id: " + contact.getId());
 	}
 
 	public static void main(String[] args) {
@@ -61,17 +65,64 @@ public class ContactDaoImpl implements ContactDao {
 		ctx.load("classpath:META-INF/spring/app-context-annotation-orm.xml");
 		ctx.refresh();
 		ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
-		//Find only contacts
-		
-		System.out.println("Find only contacts");
-		listContacts(contactDao.findAll());
-		System.out.println("Find contacts with details");
+
+//		findContacts(contactDao);
+//		findContactsWithDetails(contactDao);
+//		findContactWithId(contactDao);
+//		insertContact(contactDao);
+//		updateContact(contactDao);
+		deleteContact(contactDao);
+	}
+
+	private static void deleteContact(ContactDao contactDao) {
+		Contact contact = contactDao.findById(4l);
+		contactDao.delete(contact);
 		listContactsWithDetail(contactDao.findAllWithDetail());
+	}
+
+	private static void updateContact(ContactDao contactDao) {
+		Contact contact = contactDao.findById(1l);
+		contact.setFirstName("Kim Fung");
+		Set<ContactTelDetail> contactTels = contact.getContactTelDetails();
+		ContactTelDetail toDeleteContactTel = null;
+		for (ContactTelDetail contactTel : contactTels) {
+			if (contactTel.getTelType().equals("Home")) {
+				toDeleteContactTel = contactTel;
+			}
+		}
+		contact.removeContactTelDetail(toDeleteContactTel);
+		contactDao.save(contact);
+		listContactsWithDetail(contactDao.findAllWithDetail());
+
+	}
+
+	private static void insertContact(ContactDao contactDao) {
+		Contact contact = new Contact();
+		contact.setFirstName("Adithya");
+		contact.setLastName("Narayan");
+		contact.setBirthDate(new Date());
+		ContactTelDetail contactTelDetail = new ContactTelDetail("Home", "1111111111");
+		contact.addContactTelDetail(contactTelDetail);
+		contactTelDetail = new ContactTelDetail("Mobile", "2222222222");
+		contact.addContactTelDetail(contactTelDetail);
+		contactDao.save(contact);
+		listContactsWithDetail(contactDao.findAllWithDetail());
+	}
+
+	private static void findContactWithId(ContactDao contactDao) {
 		System.out.println("Find contact by Id");
 		Contact contact = contactDao.findById(1l);
-		System.out.println("");
 		System.out.println("Contact with id 1:" + contact);
-		System.out.println("");
+	}
+
+	private static void findContactsWithDetails(ContactDao contactDao) {
+		System.out.println("Find contacts with details");
+		listContactsWithDetail(contactDao.findAllWithDetail());
+	}
+
+	private static void findContacts(ContactDao contactDao) {
+		System.out.println("Find only contacts");
+		listContacts(contactDao.findAll());
 	}
 
 	private static void listContacts(List<Contact> contacts) {
