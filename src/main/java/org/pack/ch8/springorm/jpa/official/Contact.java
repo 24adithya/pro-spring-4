@@ -1,4 +1,4 @@
-package org.pack.ch7.springorm.official;
+package org.pack.ch8.springorm.jpa.official;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,18 +14,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
 @Entity(name = "contact_sphb")
 @Table(name = "contact_sphb")
 @NamedQueries({
+	@NamedQuery(name="contact.findAll", query="select c from contact_sphb c"),
 	@NamedQuery(name = "contact.findById", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
 	@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })
 public class Contact implements Serializable {

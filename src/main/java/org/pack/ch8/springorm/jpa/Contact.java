@@ -1,4 +1,4 @@
-package org.pack.ch8.springorm;
+package org.pack.ch8.springorm.jpa;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -22,8 +22,8 @@ import javax.persistence.Version;
 
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
-import org.pack.ch8.springorm.ContactTelDetail;
-import org.pack.ch8.springorm.Hobby;
+import org.pack.ch8.springorm.jpa.ContactTelDetail;
+import org.pack.ch8.springorm.jpa.Hobby;
 
 @Entity(name = "contact")
 @Table(name = "contact")

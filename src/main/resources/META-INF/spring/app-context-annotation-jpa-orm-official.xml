@@ -21,30 +21,32 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
-		
+
 	<context:property-placeholder
 		location="classpath:META-INF/properties/jdbc-oracle-orm.properties" />
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
-		p:sessionFactory-ref="sessionFactory" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
 
-	<tx:annotation-driven />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<context:component-scan base-package="org.pack.ch7.springorm.official" />
+	<context:component-scan base-package="org.pack.ch8.springorm.jpa.official" />
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch7.springorm.official"
-		p:hibernateProperties-ref="hibernateProperties" />
+	<bean id="emf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:jpaProperties-ref="hibernateProperties"
+		p:packagesToScan="org.pack.ch8.springorm.jpa.official"
+		p:jpaVendorAdapter-ref="hibernateJpaVendorAdapter">
+	</bean>
+	
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
-	<!-- To use the session factory inside the contact dao bean without specifying the @Resource..use the below commented approach -->
-	<!-- <bean id="contactDaoOfficial" class="org.pack.ch7.springorm.official.ContactDao" p:sessionFactory-ref="sessionFactory">
-	</bean> -->
+	<!-- <bean id="contactDao" class="org.pack.ch7.springorm.ContactDaoImpl" /> -->
 
 	<util:properties id="hibernateProperties">
-		<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
-		<prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
+		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 		<prop key="hibernate.max_fetch_depth">3</prop>
 		<prop key="hibernate.jdbc.fetch_size">50</prop>
 		<prop key="hibernate.jdbc.batch_size">10</prop>

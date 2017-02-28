@@ -1,4 +1,4 @@
-package org.pack.ch8.springorm;
+package org.pack.ch8.springorm.jpa;
 
 import java.io.Serializable;
 
