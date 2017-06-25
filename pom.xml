@@ -21,8 +21,8 @@
 
 		<!-- MySql version -->
 		<mysql-connector-version>5.1.31</mysql-connector-version>
-		
-		<!--  -->
+
+		<!-- -->
 		<oracle-connector-version>12.1.0.2</oracle-connector-version>
 
 		<!-- Hibernate / JPA -->
@@ -102,11 +102,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc7</artifactId>
-			<version>${oracle-connector-version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>${oracle-connector-version}</version> </dependency> -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -131,6 +128,16 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>22.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.11</version>
 		</dependency>
 	</dependencies>
 </project>
