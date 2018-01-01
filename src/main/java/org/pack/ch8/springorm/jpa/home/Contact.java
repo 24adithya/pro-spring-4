@@ -28,9 +28,11 @@ import org.pack.ch8.springorm.jpa.home.Hobby;
 @Entity(name = "contact")
 @Table(name = "contact")
 @NamedQueries({
-		@NamedQuery(name = "contact.findById", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
+		@NamedQuery(name = "contact.findById", query = "select distinct c from contact c "
+				+ "left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
 		@NamedQuery(name = "contact.findAll", query = "select c from contact c"),
-		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })
+		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact c left join "
+				+ "fetch c.contactTelDetails t left join fetch c.hobbies h") })
 public class Contact implements Serializable {
 	/**
 	 * 

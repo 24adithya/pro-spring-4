@@ -24,7 +24,7 @@ public class ContactDaoImpl implements ContactDao {
 		return sessionFactory;
 	}
 
-	@Resource(name = "sessionFactory")
+	@Resource
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -75,8 +75,8 @@ public class ContactDaoImpl implements ContactDao {
 		ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
 
 //		findContacts(contactDao);
-		findContacts(contactDao, ctx);
-//		findContactsWithDetails(contactDao);
+//		findContacts(contactDao, ctx);
+		findContactsWithDetails(contactDao);
 //		findContactWithId(contactDao);
 //		insertContact(contactDao);
 //		updateContact(contactDao);
