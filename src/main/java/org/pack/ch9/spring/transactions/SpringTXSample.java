@@ -7,19 +7,19 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class SpringTXSample {
 	public static void main(String[] args) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-jpa-home.xml");
+		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-home.xml");
 		ctx.refresh();
 		
 		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
 		listContacts("Find all:", contactService.findAll());
-		saveContact(contactService);
-		coutContacts(contactService);
+//		saveContact(contactService);
+//		countContacts(contactService);
 //		listContacts("Find all:", contactService.findById(1l));
 //		listContacts("Find by first name:", contactService.findByFirstName("Adams"));
 //		listContacts("Find by first and last name:", contactService.findByFirstNameAndLastName("AAR1", "AAR1"));
 	}
 
-	private static void coutContacts(ContactService contactService) {
+	private static void countContacts(ContactService contactService) {
 		System.out.println("No. of Contacts: " + contactService.countAll());
 	}
 

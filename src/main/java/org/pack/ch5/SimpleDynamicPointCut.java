@@ -12,6 +12,7 @@ public class SimpleDynamicPointCut extends DynamicMethodMatcherPointcut {
 		return ("foo".equals(method.getName()));
 	}
 
+	@Override
 	public boolean matches(Method method, Class<?> cls, Object[] args) {
 		System.out.println("Dynamic check for " + method.getName());
 		int x = ((Integer) args[0]).intValue();

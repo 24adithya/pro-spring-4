@@ -31,14 +31,12 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<tx:annotation-driven />
 
-	<context:component-scan base-package="org.pack.ch7.springorm.home" />
+	<context:component-scan base-package="org.pack.ch9.spring.transactions" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch7.springorm.home"
+		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch9.spring.transactions"
 		p:hibernateProperties-ref="hibernateProperties" />
-
-	<!-- <bean id="contactDao" class="org.pack.ch7.springorm.home.ContactDaoImpl" /> -->
 
 	<util:properties id="hibernateProperties">
 		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
