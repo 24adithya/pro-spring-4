@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.pack.ch7.springorm.official.Contact;
 import org.pack.ch7.springorm.official.ContactTelDetail;
 import org.pack.ch7.springorm.official.Hobby;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,9 @@ public class ContactDao {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	
+	@Autowired
+	private ContactRepository contactRepository;
 
 	@Resource(name = "sessionFactory")
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -63,7 +67,7 @@ public class ContactDao {
 		ctx.refresh();
 		ContactDao contactDao = ctx.getBean("contactDaoOfficial", ContactDao.class);
 //		findContacts(contactDao);
-//		findContactsWithDetails(contactDao);
+		findContactsWithDetails(contactDao);
 //		findContactWithId(contactDao);
 //		insertContact(contactDao);	
 //		updateContact(contactDao);

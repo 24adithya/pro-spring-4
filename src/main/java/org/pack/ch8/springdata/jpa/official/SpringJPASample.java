@@ -1,33 +1,20 @@
-package org.pack.ch9.spring.transactions;
+package org.pack.ch8.springdata.jpa.official;
 
 import java.util.List;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class SpringTXSample {
+public class SpringJPASample {
 	public static void main(String[] args) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-home.xml");
+		ctx.load("classpath:META-INF/spring/app-context-annotation-data-jpa-official.xml");
 		ctx.refresh();
 		
-		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
+		ContactService contactService = ctx.getBean("springJpaContactService", ContactService.class);
 		listContacts("Find all:", contactService.findAll());
-//		saveContact(contactService);
-//		countContacts(contactService);
 //		listContacts("Find all:", contactService.findById(1l));
 //		listContacts("Find by first name:", contactService.findByFirstName("Adams"));
 //		listContacts("Find by first and last name:", contactService.findByFirstNameAndLastName("AAR1", "AAR1"));
-	}
-
-	private static void countContacts(ContactService contactService) {
-		System.out.println("No. of Contacts: " + contactService.countAll());
-	}
-
-	private static void saveContact(ContactService contactService) {
-		Contact contact = contactService.findById(1L).get(0);
-		contact.setFirstName("Peter");
-		contactService.save(contact);
-		System.out.println("Contact saved successfully: " + contact);
 	}
 
 	private static void listContacts(String message, List<Contact> contacts) {
@@ -35,6 +22,12 @@ public class SpringTXSample {
 		System.out.println(message);
 		for (Contact contact : contacts) {
 			System.out.println(contact);
+			/*if (contact.getContactTelDetails() != null) {
+				for (ContactTelDetail contactTelDetail : contact
+						.getContactTelDetails()) {
+					System.out.println(contactTelDetail);
+				}
+			}*/
 			System.out.println();
 		}
 	}

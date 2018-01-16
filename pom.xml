@@ -102,8 +102,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc7</artifactId> 
-			<version>${oracle-connector-version}</version> </dependency> -->
+		<dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>${oracle-connector-version}</version> </dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

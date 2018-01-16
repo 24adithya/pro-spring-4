@@ -1,4 +1,4 @@
-package org.pack.ch9.spring.transactions;
+package org.pack.ch8.springdata.jpa.official;
 
 import java.io.Serializable;
 

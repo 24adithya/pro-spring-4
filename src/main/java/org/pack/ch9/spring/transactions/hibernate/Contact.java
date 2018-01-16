@@ -1,4 +1,4 @@
-package org.pack.ch9.spring.transactions;
+package org.pack.ch9.spring.transactions.hibernate;
 
 import java.io.Serializable;
 import java.util.Date;
