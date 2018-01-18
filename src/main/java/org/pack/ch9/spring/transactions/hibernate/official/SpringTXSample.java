@@ -1,4 +1,4 @@
-package org.pack.ch9.spring.transactions.hibernate;
+package org.pack.ch9.spring.transactions.hibernate.official;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class SpringTXSample {
 //		listContacts("Find by first and last name:", contactService.findByFirstNameAndLastName("AAR1", "AAR1"));
 	}
 
-	private static void countContacts(ContactService contactService) {
+	/*private static void countContacts(ContactService contactService) {
 		System.out.println("No. of Contacts: " + contactService.countAll());
 	}
 
@@ -28,7 +28,7 @@ public class SpringTXSample {
 		contact.setFirstName("Peter");
 		contactService.save(contact);
 		System.out.println("Contact saved successfully: " + contact);
-	}
+	}*/
 
 	private static void listContacts(String message, List<Contact> contacts) {
 		System.out.println("");

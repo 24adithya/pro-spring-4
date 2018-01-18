@@ -60,6 +60,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<prop key="hibernate.show_sql">true</prop>
 	</util:properties>
 
+	<!-- Extremely important to note that without this tag, interfaces extending 'Repository' tag will not be instantiated with a spring bean  -->
+	<!-- Refer https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/repositories.html#repositories.create-instances and
+			   https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html -->
 	<jpa:repositories base-package="org.pack.ch9.spring.transactions"
 		entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"></jpa:repositories>
 

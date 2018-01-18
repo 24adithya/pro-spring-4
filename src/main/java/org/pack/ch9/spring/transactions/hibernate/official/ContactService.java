@@ -1,17 +1,12 @@
-package org.pack.ch9.spring.transactions.hibernate;
+package org.pack.ch9.spring.transactions.hibernate.official;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.Lists;
 
 @Service("springTxContactService")
 @Transactional
@@ -28,13 +23,14 @@ public class ContactService {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	@Autowired
-	private ContactRepository contactRepository;
+//	Not required. We will strictly use hibernate session factory for all transactions as the below value is related to repository beans  
+//	@Autowired
+//	private ContactRepository contactRepository;
 
 	@Transactional(readOnly = true)
 	public List<Contact> findAll() {
 		// Collection<Contact> contacts = contactRepository.findAll();
-		return Lists.newArrayList(contactRepository.findAll());
+		return sessionFactory.getCurrentSession().createQuery("from contact_sphb c").list();
 	}
 
 	/*
@@ -47,7 +43,7 @@ public class ContactService {
 	 * contactRepository.findByFirstNameAndLastName(firstName, lastName); }
 	 */
 
-	@Transactional(readOnly = true)
+	/*@Transactional(readOnly = true)
 	public List<Contact> findById(Long id) {
 		List<Contact> contacts = new ArrayList<>();
 		contacts.add(contactRepository.findOne(id));
@@ -61,5 +57,5 @@ public class ContactService {
 
 	public Contact save(Contact contact) {
 		return contactRepository.save(contact);
-	}
+	}*/
 }

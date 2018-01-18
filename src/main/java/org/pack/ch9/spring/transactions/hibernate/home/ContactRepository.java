@@ -1,10 +1,7 @@
-package org.pack.ch9.spring.transactions.hibernate;
-
-import javax.annotation.Resource;
+package org.pack.ch9.spring.transactions.hibernate.home;
 
 import org.springframework.data.jpa.repository.Query;
 
-@Resource
 public interface ContactRepository extends CrudRepository<Contact, Long> {
 	@Query("select count(c) from contact c")
 	Long countAllContacts();

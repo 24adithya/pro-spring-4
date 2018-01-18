@@ -31,11 +31,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<tx:annotation-driven />
 
-	<context:component-scan base-package="org.pack.ch9.spring.transactions.hibernate" />
+	<context:component-scan base-package="org.pack.ch9.spring.transactions.hibernate.home" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch9.spring.transactions.hibernate"
+		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch9.spring.transactions.hibernate.home"
 		p:hibernateProperties-ref="hibernateProperties" />
 
 	<util:properties id="hibernateProperties">

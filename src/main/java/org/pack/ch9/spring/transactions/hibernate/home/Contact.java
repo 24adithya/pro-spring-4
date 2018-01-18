@@ -1,4 +1,4 @@
-package org.pack.ch9.spring.transactions.hibernate;
+package org.pack.ch9.spring.transactions.hibernate.home;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,11 +16,11 @@ import javax.persistence.Version;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-@Entity(name = "contact")
-@Table(name = "contact")
+@Entity(name = "contact_sphb")
+@Table(name = "contact_sphb")
 /*@NamedQueries({
-		@NamedQuery(name = "contact.findById", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
-		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })*/
+		@NamedQuery(name = "contact.findById", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
+		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })*/
 public class Contact implements Serializable {
 	/**
 	 * 

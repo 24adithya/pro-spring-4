@@ -1,4 +1,4 @@
-package org.pack.ch9.spring.transactions.hibernate;
+package org.pack.ch9.spring.transactions.hibernate.home;
 
 import java.io.Serializable;
 

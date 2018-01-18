@@ -2,12 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:util="http://www.springframework.org/schema/util" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/jdbc
 http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/util
@@ -31,15 +33,16 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<tx:annotation-driven />
 
-	<context:component-scan base-package="org.pack.ch9.spring.transactions.hibernate" />
+	<context:component-scan base-package="org.pack.ch9.spring.transactions.hibernate.official" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch9.spring.transactions.hibernate"
+		p:dataSource-ref="dataSource" p:packagesToScan="org.pack.ch9.spring.transactions.hibernate.official"
 		p:hibernateProperties-ref="hibernateProperties" />
 
 	<util:properties id="hibernateProperties">
-		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+		<prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
 		<prop key="hibernate.max_fetch_depth">3</prop>
 		<prop key="hibernate.jdbc.fetch_size">50</prop>
 		<prop key="hibernate.jdbc.batch_size">10</prop>
