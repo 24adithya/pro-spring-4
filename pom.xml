@@ -32,6 +32,8 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
+		
+		<log4j.version>2.10.0</log4j.version>
 
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
@@ -58,12 +60,28 @@
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		
+		<!-- Log4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>

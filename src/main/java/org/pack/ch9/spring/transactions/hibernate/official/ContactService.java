@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("springTxContactService")
@@ -30,6 +31,15 @@ public class ContactService {
 	@Transactional(readOnly = true)
 	public List<Contact> findAll() {
 		// Collection<Contact> contacts = contactRepository.findAll();
+//		return sessionFactory.getCurrentSession().createQuery("from contact_sphb c").list();
+		List<Contact> result = findRealAll();
+
+		return result;
+	}
+	
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
+	public List<Contact> findRealAll() {
+		// Collection<Contact> contacts = contactRepository.findAll();
 		return sessionFactory.getCurrentSession().createQuery("from contact_sphb c").list();
 	}
 
@@ -53,9 +63,9 @@ public class ContactService {
 	@Transactional(propagation = Propagation.NEVER)
 	public long countAll() {
 		return contactRepository.countAllContacts();
-	}
+	}*/
 
-	public Contact save(Contact contact) {
+	/*public Contact save(Contact contact) {
 		return contactRepository.save(contact);
 	}*/
 }
