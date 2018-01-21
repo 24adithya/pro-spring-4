@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-@Entity(name = "contact_tel_detail_sphb")
-@Table(name = "contact_tel_detail_sphb")
+@Entity(name = "contact_tel_detail")
+@Table(name = "contact_tel_detail")
 public class ContactTelDetail implements Serializable {
 	/**
 	 * 

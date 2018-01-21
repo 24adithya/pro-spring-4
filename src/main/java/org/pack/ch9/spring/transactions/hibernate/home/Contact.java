@@ -2,12 +2,19 @@ package org.pack.ch9.spring.transactions.hibernate.home;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,11 +23,11 @@ import javax.persistence.Version;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-@Entity(name = "contact_sphb")
-@Table(name = "contact_sphb")
-/*@NamedQueries({
-		@NamedQuery(name = "contact.findById", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
-		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact_sphb c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })*/
+@Entity(name = "contact")
+@Table(name = "contact")
+@NamedQueries({
+		@NamedQuery(name = "contact.findById", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h where c.id = :id"),
+		@NamedQuery(name = "contact.findAllWithDetail", query = "select distinct c from contact c left join fetch c.contactTelDetails t left join fetch c.hobbies h") })
 public class Contact implements Serializable {
 	/**
 	 * 
@@ -32,8 +39,8 @@ public class Contact implements Serializable {
 	private String lastName;
 	private Date birthDate;
 
-//	private Set<ContactTelDetail> contactTelDetails = new HashSet<ContactTelDetail>();
-//	private Set<Hobby> hobbies = new HashSet<Hobby>();
+	private Set<ContactTelDetail> contactTelDetails = new HashSet<ContactTelDetail>();
+	private Set<Hobby> hobbies = new HashSet<Hobby>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,7 +91,7 @@ public class Contact implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	/*@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<ContactTelDetail> getContactTelDetails() {
 		return this.contactTelDetails;
 	}
@@ -110,7 +117,7 @@ public class Contact implements Serializable {
 
 	public void setHobbies(Set<Hobby> hobbies) {
 		this.hobbies = hobbies;
-	}*/
+	}
 
 	public String toString() {
 		return "Contact - Id: " + id + ", First name: " + firstName + ", Last name: " + lastName + ", Birthday: "

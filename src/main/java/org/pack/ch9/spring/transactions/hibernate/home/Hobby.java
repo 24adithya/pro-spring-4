@@ -12,8 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity(name = "hobby_sphb")
-@Table(name = "hobby_sphb")
+@Entity(name = "hobby")
+@Table(name = "hobby")
 public class Hobby implements Serializable {
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class Hobby implements Serializable {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "contact_hobby_detail_sphb", joinColumns = @JoinColumn(name = "HOBBY_ID"), inverseJoinColumns = @JoinColumn(name = "CONTACT_ID"))
+	@JoinTable(name = "contact_hobby_detail", joinColumns = @JoinColumn(name = "HOBBY_ID"), inverseJoinColumns = @JoinColumn(name = "CONTACT_ID"))
 	public Set<Contact> getContacts() {
 		return this.contacts;
 	}
