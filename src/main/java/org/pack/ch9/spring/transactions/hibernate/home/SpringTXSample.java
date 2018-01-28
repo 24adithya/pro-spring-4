@@ -17,14 +17,14 @@ public class SpringTXSample {
 	public static void main(String[] args) {
 		
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-home.xml");
+		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-home-xml.xml");
 		ctx.refresh();
 		
 		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
-		listContacts("Find all:", contactService.findAll());
-//		saveContactById(contactService);
-//		saveContact(contactService);
 //		listContacts("Find all:", contactService.findAll());
+		saveContactById(contactService);
+//		saveContact(contactService);
+		listContacts("Find all:", contactService.findAll());
 //		countContacts(contactService);
 //		listContacts("Find all:", contactService.findById(1l));
 //		listContacts("Find by first name:", contactService.findByFirstName("Adams"));
@@ -45,9 +45,9 @@ public class SpringTXSample {
 	private static void saveContactById(ContactService contactService) {
 		Contact contact = contactService.findById(6L);
 		try {
-			LocalDate date = LocalDate.parse("1990-03-24");
+			LocalDate date = LocalDate.parse("2000-01-01");
 			Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-			contactService.saveContactInSteps(contact, "New Adithya 6", "New Narayan 6", newDate);
+			contactService.saveContactInSteps(contact, "New Adithya 2", "New Narayan 2", newDate);
 		} catch (Exception e) {
 			LOG.error(e.getMessage());
 		}
