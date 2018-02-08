@@ -17,7 +17,7 @@ public class SpringTXSample {
 	public static void main(String[] args) {
 		
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-official.xml");
+		ctx.load("classpath:META-INF/spring/app-context-annotation-data-transactions-hibernate-official-xml.xml");
 		ctx.refresh();
 		
 		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
@@ -47,7 +47,7 @@ public class SpringTXSample {
 		try {
 			LocalDate date = LocalDate.parse("1988-03-24");
 			Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-			contactService.saveContactInSteps(contact, "New Adithya 12", "New Narayan 12", newDate);
+			contactService.saveContactInSteps(contact, "New Adithya 1", "New Narayan 1", newDate);
 		} catch (Exception e) {
 			LOG.error(e.getMessage());
 		}
