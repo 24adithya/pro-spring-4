@@ -22,7 +22,7 @@ public class SpringTXSample {
 		
 		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
 //		listContacts("Find all:", contactService.findAll());
-		saveContactById(contactService);
+//		saveContactById(contactService);
 //		saveContact(contactService);
 		listContacts("Find all:", contactService.findAll());
 //		countContacts(contactService);

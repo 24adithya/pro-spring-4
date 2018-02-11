@@ -25,6 +25,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
+	<bean id="methodInterceptor" class="org.pack.ch9.spring.transactions.hibernate.home.SerializationInterceptor"></bean>
+
 	<context:property-placeholder
 		location="classpath:META-INF/properties/jdbc-mysql-orm.properties" />
 
@@ -58,6 +60,14 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			id="saveUpdateOperation" />
 		<aop:advisor pointcut-ref="saveUpdateOperation"
 			advice-ref="saveUpdateAdvice" />
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* org.pack.ch9.spring.transactions.hibernate.home.Contact*.*(..))"
+			id="seriliazerInterceptor" />
+		<aop:advisor pointcut-ref="seriliazerInterceptor"
+			advice-ref="methodInterceptor" />
 	</aop:config>
 
 	<tx:advice id="saveUpdateAdvice" transaction-manager="transactionManager">
