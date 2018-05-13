@@ -27,8 +27,8 @@ public class ContactDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(contact);
 		throw new Exception("Cannot update first name");
 		
-//		LOG.info("Contact First name saved successfully");
-//		return contact;
+		/*LOG.info("Contact First name saved successfully");
+		return contact;*/
 	}
 
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -37,14 +37,17 @@ public class ContactDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(contact);
 		throw new Exception("Cannot update last name");
 		
-//		LOG.info("Contact " + contact + " saved successfully");
-//		return contact;
+		/*LOG.info("Contact " + contact + " saved successfully");
+		return contact;*/
 	}
 
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Contact updateContactBday(Contact contact, Date bDate) {
+	public Contact updateContactBday(Contact contact, Date bDate) /*throws Exception*/ {
 		contact.setBirthDate(bDate);
 		sessionFactory.getCurrentSession().saveOrUpdate(contact);
+		
+//		throw new Exception("Cannot update Birth date");
+		
 		LOG.info("Contact Birth Date saved successfully");
 		return contact;
 	}

@@ -53,6 +53,14 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- TODO: need to investigate why the following doesn't work -->
 	<!-- expression="execution(* org.pack.ch9.spring.transactions.hibernate.home.ContactService.*(..)) 
 		and execution(* org.pack.ch9.spring.transactions.hibernate.home.ContactDAO.*(..))" -->
+
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* org.pack.ch9.spring.transactions.hibernate.home.Contact*.*(..))"
+			id="seriliazerInterceptor" />
+		<aop:advisor pointcut-ref="seriliazerInterceptor"
+			advice-ref="methodInterceptor" />
+	</aop:config>
 		
 	<aop:config>
 		<aop:pointcut
@@ -62,14 +70,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			advice-ref="saveUpdateAdvice" />
 	</aop:config>
 	
-	<aop:config>
-		<aop:pointcut
-			expression="execution(* org.pack.ch9.spring.transactions.hibernate.home.Contact*.*(..))"
-			id="seriliazerInterceptor" />
-		<aop:advisor pointcut-ref="seriliazerInterceptor"
-			advice-ref="methodInterceptor" />
-	</aop:config>
-
 	<tx:advice id="saveUpdateAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="update*" propagation="REQUIRES_NEW"

@@ -58,13 +58,13 @@ public class ContactService {
 //	@Transactional(propagation = Propagation.REQUIRED)
 	public Contact saveContactInSteps(Contact contact, String newFirstName, String newLastName, Date bDate) throws Exception {
 		try {
-			contact.setFirstName("dummy first name");
-			contact.setFirstName("dummy last name");
+			/*contact.setFirstName("Adithya");
+			contact.setLastName("Narayan");
 			
-			LocalDate date = LocalDate.parse("1900-01-01");
+			LocalDate date = LocalDate.parse("1988-03-24");
 			Date dummyDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			
-			contact.setBirthDate(dummyDate );
+			contact.setBirthDate(dummyDate );*/
 			
 			contactDAO.updateContactFirstName(contact, newFirstName);
 		} catch (Exception e) {

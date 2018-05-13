@@ -22,9 +22,9 @@ public class SpringTXSample {
 		
 		ContactService contactService = ctx.getBean("springTxContactService", ContactService.class);
 //		listContacts("Find all:", contactService.findAll());
-//		saveContactById(contactService);
+		saveContactById(contactService);
 //		saveContact(contactService);
-		listContacts("Find all:", contactService.findAll());
+//		listContacts("Find all:", contactService.findAll());
 //		countContacts(contactService);
 //		listContacts("Find all:", contactService.findById(1l));
 //		listContacts("Find by first name:", contactService.findByFirstName("Adams"));
@@ -43,11 +43,15 @@ public class SpringTXSample {
 	}
 	
 	private static void saveContactById(ContactService contactService) {
-		Contact contact = contactService.findById(6L);
+		Contact contact = contactService.findById(13L);
 		try {
-			LocalDate date = LocalDate.parse("2000-01-01");
+			if(contact == null) {
+				contact = new Contact();
+//				contact.setId(6l);			
+			}
+			LocalDate date = LocalDate.parse("1988-03-24");
 			Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-			contactService.saveContactInSteps(contact, "New Adithya 2", "New Narayan 2", newDate);
+			contactService.saveContactInSteps(contact, "Adithya", "Narayan", newDate);
 		} catch (Exception e) {
 			LOG.error(e.getMessage());
 		}

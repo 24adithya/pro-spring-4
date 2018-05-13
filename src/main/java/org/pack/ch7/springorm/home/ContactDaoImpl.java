@@ -76,7 +76,7 @@ public class ContactDaoImpl implements ContactDao {
 
 //		findContacts(contactDao);
 //		findContacts(contactDao, ctx);
-		findContactsWithDetails(contactDao);
+//		findContactsWithDetails(contactDao);
 //		findContactWithId(contactDao);
 //		insertContact(contactDao);
 //		updateContact(contactDao);
@@ -89,7 +89,7 @@ public class ContactDaoImpl implements ContactDao {
 	}
 
 	private static void deleteContact(ContactDao contactDao) {
-		Contact contact = contactDao.findById(4l);
+		Contact contact = contactDao.findById(8l);
 		contactDao.delete(contact);
 		listContactsWithDetail(contactDao.findAllWithDetail());
 	}
