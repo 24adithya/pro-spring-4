@@ -1,17 +1,14 @@
 package org.pack.ch9.spring.transactions.hibernate.home;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 //@Service("springTxContactService")
 //@Transactional
-public class ContactService {
+public class ContactService implements SpringBean {
 
 	private static final Log LOG = LogFactory.getLog(ContactService.class);
 	

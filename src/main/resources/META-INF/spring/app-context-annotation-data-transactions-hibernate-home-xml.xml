@@ -20,12 +20,20 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- <jdbc:embedded-database id="dataSource" type="H2"> <jdbc:script location="classpath:META-INF/sql/schema.sql" 
 		/> <jdbc:script location="classpath:META-INF/sql/test-data.sql" /> </jdbc:embedded-database> -->
 
+	<bean name="serviceExporter"
+		class="org.springframework.remoting.httpinvoker.
+		HttpInvokerServiceExporter">
+		<property name="service" ref="springService" />
+		<property name="serviceInterface" value="org.pack.services.SpringService" />
+	</bean>
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
-	<bean id="methodInterceptor" class="org.pack.ch9.spring.transactions.hibernate.home.SerializationInterceptor"></bean>
+	<bean id="methodInterceptor"
+		class="org.pack.ch9.spring.transactions.hibernate.home.SerializationInterceptor"></bean>
 
 	<context:property-placeholder
 		location="classpath:META-INF/properties/jdbc-mysql-orm.properties" />
@@ -61,7 +69,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<aop:advisor pointcut-ref="seriliazerInterceptor"
 			advice-ref="methodInterceptor" />
 	</aop:config>
-		
+
 	<aop:config>
 		<aop:pointcut
 			expression="execution(* org.pack.ch9.spring.transactions.hibernate.home.Contact*.*(..))"
@@ -69,7 +77,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<aop:advisor pointcut-ref="saveUpdateOperation"
 			advice-ref="saveUpdateAdvice" />
 	</aop:config>
-	
+
 	<tx:advice id="saveUpdateAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="update*" propagation="REQUIRES_NEW"

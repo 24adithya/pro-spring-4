@@ -2,8 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.samples</groupId>
-	<artifactId>ProSpring4</artifactId>
+	<artifactId>SpingServices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<properties>
 
@@ -32,7 +33,7 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
-		
+
 		<log4j.version>2.10.0</log4j.version>
 
 		<!-- Test -->
@@ -49,6 +50,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
@@ -60,28 +71,28 @@
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		
+
+
 		<!-- Log4j -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -120,11 +131,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc7</artifactId> 
-			<version>${oracle-connector-version}</version> 
-		</dependency> -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>${oracle-connector-version}</version> </dependency> -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -161,4 +169,53 @@
 			<version>1.6.11</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<!-- <excludes>org/pack/ch*/**,org/pack/*,org/pack/annotation/**,org/pack/xml/**</excludes> -->
+					<includes>org/pack/services/**,
+						org/pack/ch9/spring/transactions/hibernate/home/**,
+						META-INF/spring/app-context-annotation-data-transactions-hibernate-home-xml.xml</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.1</version>
+				<configuration>
+					<!-- <webResources> <webResource> <directory> src </directory> <includes>org/pack/services/**, 
+						org/pack/ch9/spring/transactions/hibernate/home/**, META-INF/spring/app-context-annotation-data-transactions-hibernate-home-xml.xml 
+						</includes> <excludes>org/pack/ch*/**,org/pack/*,org/pack/annotation/**,org/pack/xml/**</excludes> 
+						</webResource> <webResource> <directory>META-INF</directory> <includes>spring/app-context-annotation-data-transactions-hibernate-home-xml.xml</includes> 
+						</webResource> </webResources> -->
+					<!-- <packagingIncludes>org/pack/services/**, org/pack/ch9/spring/transactions/hibernate/home/**, 
+						META-INF/spring/app-context-annotation-data-transactions-hibernate-home-xml.xml</packagingIncludes> -->
+					<!-- <packagingIncludes>WEB-INF/classes/org/pack/services/**, WEB-INF/classes/org/pack/ch9/spring/transactions/hibernate/home/**, 
+						META-INF/spring/app-context-annotation-data-transactions-hibernate-home-xml.xml</packagingIncludes> -->
+					<packagingExcludes>WEB-INF/classes/org/pack/*,
+						WEB-INF/classes/org/pack/annotation, WEB-INF/classes/org/pack/ch4,
+						WEB-INF/classes/org/pack/ch5, WEB-INF/classes/org/pack/ch6,
+						WEB-INF/classes/org/pack/ch7, WEB-INF/classes/org/pack/ch8,
+						WEB-INF/classes/org/pack/annotation/**,WEB-INF/classes/org/pack/xml/**
+						META-INF/spring/properties/**</packagingExcludes>
+
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
