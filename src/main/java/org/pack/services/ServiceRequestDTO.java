@@ -1,6 +1,8 @@
 package org.pack.services;
 
-public class ServiceRequestDTO<T> {
+import java.io.Serializable;
+
+public class ServiceRequestDTO<T> implements Serializable {
 
 	private T dto;
 	private Object[] parameters;

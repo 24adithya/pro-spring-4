@@ -1,5 +1,7 @@
 package org.pack.client;
 
+import org.pack.services.ServiceRequestDTO;
+import org.pack.services.SpringService;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class HttpInvokerClientSample {
