@@ -69,13 +69,13 @@ public class ContactService implements SpringBean {
 		}
 		
 		try {
-			contactDAO.updateContactLastName(contact, newLastName);
+			contactDAO.updateContactLastName(contact, newLastName, true);
 		} catch (Exception e) {
 			LOG.error(e);
 		}
 		
 		try {
-			contactDAO.updateContactBday(contact, bDate);
+			contactDAO.updateContactBday(contact, bDate, true);
 		} catch (Exception e) {
 			LOG.error(e);
 		}

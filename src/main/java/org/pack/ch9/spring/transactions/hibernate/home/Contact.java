@@ -48,6 +48,14 @@ public class Contact implements Serializable {
 	public Long getId() {
 		return this.id;
 	}
+	
+	public Contact copy(Contact contact) {
+		contact.setFirstName(getFirstName());
+		contact.setLastName(getLastName());
+		contact.setBirthDate(getBirthDate());
+		
+		return contact;
+	}
 
 	public void setId(Long id) {
 		this.id = id;

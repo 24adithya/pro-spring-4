@@ -24,7 +24,7 @@ public class SpringTXSample {
 //		listContacts("Find all:", contactService.findAll());
 		saveContactById(contactService);
 //		saveContact(contactService);
-//		listContacts("Find all:", contactService.findAll());
+		listContacts("Find all:", contactService.findAll());
 //		countContacts(contactService);
 //		listContacts("Find all:", contactService.findById(1l));
 //		listContacts("Find by first name:", contactService.findByFirstName("Adams"));
@@ -43,7 +43,7 @@ public class SpringTXSample {
 	}
 	
 	private static void saveContactById(ContactService contactService) {
-		Contact contact = contactService.findById(13L);
+		Contact contact = contactService.findById(1L);
 		try {
 			if(contact == null) {
 				contact = new Contact();
@@ -51,7 +51,7 @@ public class SpringTXSample {
 			}
 			LocalDate date = LocalDate.parse("1988-03-24");
 			Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-			contactService.saveContactInSteps(contact, "Adithya", "Narayan", newDate);
+			contactService.saveContactInSteps(contact, "Adithya ", "Narayan ", newDate);
 		} catch (Exception e) {
 			LOG.error(e.getMessage());
 		}
